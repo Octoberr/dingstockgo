@@ -1,0 +1,2 @@
+# dingstockgo
+go spider
