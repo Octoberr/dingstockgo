@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"spider/dbmange/redis"
+	"spider/swmfunc"
 	"testing"
 	"time"
 )
@@ -25,7 +26,7 @@ func Test_Redis(t *testing.T) {
 func Test_json(t *testing.T) {
 	timeNow := time.Now().String()
 	fmt.Println("Time now:", timeNow)
-	if result, err := json.Marshal(&rdb); err == nil{
+	if result, err := json.Marshal(&rdb); err == nil {
 		fmt.Println(result)
 		fmt.Println(string(result))
 	}
@@ -41,7 +42,7 @@ func Test_TimeFormat(t *testing.T) {
 	t1, e := time.Parse(
 		withNanos,
 		"2012-11-01T22:08:41")
-	if e == nil{
+	if e == nil {
 		fmt.Println(t1.Format("2006-01-02 15:04:05"))
 	}
 }
@@ -51,33 +52,33 @@ func Test_RedisPool(t *testing.T) {
 	fmt.Println(redisAdd)
 	pool := redis.PoolInitRedis(redisAdd, rdb.PassWD)
 	c1 := pool.Get()
-	c2:=pool.Get()
-	c3:=pool.Get()
-	c4:=pool.Get()
-	c5:=pool.Get()
-	fmt.Println(c1,c2,c3,c4,c5)
-	time.Sleep(time.Second * 5)//redis一共有多少个连接？？
+	c2 := pool.Get()
+	c3 := pool.Get()
+	c4 := pool.Get()
+	c5 := pool.Get()
+	fmt.Println(c1, c2, c3, c4, c5)
+	time.Sleep(time.Second * 5) //redis一共有多少个连接？？
 	_ = c1.Close()
 	_ = c2.Close()
 	_ = c3.Close()
 	_ = c4.Close()
 	_ = c5.Close()
-	time.Sleep(time.Second*5) //redis一共有多少个连接？？
+	time.Sleep(time.Second * 5) //redis一共有多少个连接？？
 
 	//下次是怎么取出来的？？
-	b1:=pool.Get()
-	b2:=pool.Get()
-	b3:=pool.Get()
-	fmt.Println(b1,b2,b3)
-	time.Sleep(time.Second*5)
+	b1 := pool.Get()
+	b2 := pool.Get()
+	b3 := pool.Get()
+	fmt.Println(b1, b2, b3)
+	time.Sleep(time.Second * 5)
 	_ = b1.Close()
 	_ = b2.Close()
 	_ = b3.Close()
 
 	//redis目前一共有多少个连接？？
-	for{
+	for {
 		fmt.Println("主程序运行中....")
-		time.Sleep(time.Second*1)
+		time.Sleep(time.Second * 1)
 	}
 }
 
@@ -105,8 +106,17 @@ func Test_fac(t *testing.T) {
 
 }
 func Test_fb(t *testing.T) {
-	for i :=0; i<10; i++{
+	for i := 0; i < 10; i++ {
 		t.Logf("%d\t", Fibonacci1(i))
 	}
+
+}
+
+func Test_sc(t *testing.T) {
+	swmfunc.TestCallBack(1, swmfunc.CallBack)
+	swmfunc.TestCallBack(2, func(x int) int {
+		fmt.Printf("我是回调，x：%d\n", x)
+		return x
+	})
 
 }
