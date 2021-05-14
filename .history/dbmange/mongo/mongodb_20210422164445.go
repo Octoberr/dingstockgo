@@ -3,15 +3,15 @@ package mongo
 import (
 	"context"
 	"fmt"
-	"time"
-
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"time"
 )
 
+
 func MongoE(idata []interface{}) {
-	mongourl := ""
+	mongourl := "mongodb://root:dinghaitaofucku123!!!@dds-2vc85a2f67ac91d41762-pub.mongodb.cn-chengdu.rds.aliyuncs.com:3717,dds-2vc85a2f67ac91d42246-pub.mongodb.cn-chengdu.rds.aliyuncs.com:3717/admin?replicaSet=mgset-1150056278"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongourl))
@@ -23,7 +23,7 @@ func MongoE(idata []interface{}) {
 	err = client.Ping(ctx, readpref.Primary())
 	collection := client.Database("haitao_data").Collection("ht_product")
 	res2, err := collection.InsertMany(ctx, idata)
-	if res2 != nil {
+	if res2 != nil{
 		fmt.Printf("Inserted %v documents into episode collection!\n", len(res2.InsertedIDs))
 	}
 	//res, err := collection.InsertOne(ctx, idata)
