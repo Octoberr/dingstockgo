@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package service;
 
-option go_package = ".;grpc";
 
 service Cal {
   rpc Add(AddRequest) returns (ResultReply) {}
