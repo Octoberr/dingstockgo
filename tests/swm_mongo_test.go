@@ -12,8 +12,7 @@ func Test_mongoConnect(t *testing.T) {
 	fmt.Println(s2)
 	s3 := &mongo.Student{Name: "小黄", Age: 11}
 	fmt.Println(s3)
-	students := [] interface{}{*s2, *s3}
+	students := []interface{}{*s2, *s3}
 	fmt.Println(students)
 	//mongo.MongoE(students)
 }
-
