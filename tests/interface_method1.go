@@ -8,7 +8,7 @@ type Phone interface {
 }
 
 type Huawei struct {
-	name string
+	name  string
 	price int
 }
 
@@ -17,11 +17,11 @@ func (huawei *Huawei) call(param int) string {
 	huawei.name = "swm"
 	return huawei.name
 }
-func (huawei *Huawei) takePhoto()  {
+func (huawei *Huawei) takePhoto() {
 	fmt.Println("I can take a photo for you")
 }
 
-func Exam1()  {
+func Phuawei() {
 	var phone = &Huawei{}
 	phone.name = "note3"
 	phone.price = 122
