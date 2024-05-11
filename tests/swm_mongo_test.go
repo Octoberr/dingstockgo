@@ -3,6 +3,7 @@ package tests
 import (
 	"fmt"
 	"spider/dbmange/mongo"
+	"spider/swmfunc"
 	"testing"
 )
 
@@ -15,4 +16,8 @@ func Test_mongoConnect(t *testing.T) {
 	students := []interface{}{*s2, *s3}
 	fmt.Println(students)
 	//mongo.MongoE(students)
+}
+func Test_gethtml(t *testing.T) {
+	swmfunc.SwmGetHtml()
+
 }
