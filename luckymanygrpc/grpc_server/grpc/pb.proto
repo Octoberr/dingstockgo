@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "../pb";
+
+package grpc_server;
+
+service Dispense {
+  rpc OnStreamMsg (StreamMsg) returns (Null) {} // 请求回应
+}
+
+message StreamMsg {
+  bytes data = 1;
+}
+
+message Null {
+}
